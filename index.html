@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Salvación (2026) - Ver Película Online HD</title>
+    
+    <!-- Meta Tags -->
+    <meta name="title" content="Proyecto Salvación (Project Hail Mary) - Estreno 2026">
+    <meta name="description" content="Mira Proyecto Salvación (2026) en 4K. La misión desesperada de Ryland Grace para salvar el sol y la humanidad.">
+
+    <style>
+        /* --- ESTILOS CSS --- */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle, #0d1b2a 0%, #000000 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        #stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .star { position: absolute; background: #e0e1dd; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+        nav { display: flex; justify-content: space-between; padding: 15px 50px; align-items: center; background: rgba(0, 0, 0, 0.9); border-bottom: 1px solid #4fc3f7; }
+        .logo { font-weight: bold; font-size: 24px; color: #4fc3f7; text-transform: uppercase; letter-spacing: 2px; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        /* SECCIÓN HERO */
+        .hero-flex { display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin: 40px 0; text-align: left; }
+        .poster-container { flex: 1; min-width: 300px; box-shadow: 0 0 30px rgba(79, 195, 247, 0.4); border-radius: 15px; overflow: hidden; border: 2px solid #4fc3f7; transition: 0.3s; cursor: pointer; }
+        .poster-container:hover { transform: scale(1.02); }
+        .poster-container img { width: 100%; display: block; filter: saturate(1.2); }
+        .source-tag { font-size: 10px; color: #aaa; text-align: center; padding: 5px; background: #000; }
+
+        .hero-details { flex: 2; min-width: 300px; }
+        .hero-details h1 { font-size: 3.5rem; margin: 0; color: #ffffff; text-shadow: 0 0 15px rgba(79, 195, 247, 0.6); }
+
+        /* CAJA DE TRÁILER */
+        .trailer-box {
+            position: relative; background: #000; width: 100%; height: 350px; margin: 30px 0;
+            border-radius: 15px; display: flex; align-items: center; justify-content: center;
+            overflow: hidden; border: 1px solid #4fc3f7; cursor: pointer;
+        }
+        .trailer-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+        .play-button { position: absolute; width: 70px; height: 70px; background: #4fc3f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 20px #4fc3f7; z-index: 2; color: #000; }
+
+        /* BOTONES */
+        .dl-btn { text-decoration: none; padding: 18px 30px; border-radius: 8px; font-weight: bold; display: inline-block; border: none; transition: 0.3s; margin: 5px; text-transform: uppercase; min-width: 200px; text-align: center; cursor: pointer; }
+        .dl-primary { background: #4fc3f7; color: #000; }
+        .dl-secondary { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid #4fc3f7; }
+        .dl-btn:hover { transform: translateY(-5px); filter: brightness(1.2); }
+
+        /* TARJETAS DE INFORMACIÓN */
+        .info-card { background: rgba(79, 195, 247, 0.05); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 5px solid #4fc3f7; }
+        .info-card h2 { color: #4fc3f7; margin-top: 0; }
+        .cast-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 15px; }
+        .cast-item { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #1b263b; }
+
+        /* CAPA DE CARGA */
+        #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000; }
+        .spinner { width: 50px; height: 50px; border: 5px solid #222; border-top: 5px solid #4fc3f7; border-radius: 50%; animation: spin 1s linear infinite; }
+        .progress-bar { width: 250px; height: 8px; background: #222; border-radius: 4px; margin-top: 20px; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: #4fc3f7; transition: width 0.2s; }
+        .hidden { display: none !important; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        footer { text-align: center; padding: 40px 20px; font-size: 12px; color: #555; border-top: 1px solid #1b263b; margin-top: 40px; }
+
+        @media (max-width: 768px) { .hero-flex { text-align: center; } .hero-details h1 { font-size: 2.5rem; } .dl-btn { width: 100%; } }
+    </style>
+</head>
+<body>
+
+    <!-- CAPA DE CARGA -->
+    <div id="loading-overlay" class="hidden">
+        <div class="spinner"></div>
+        <p id="loading-text" style="margin-top: 15px; font-weight: bold; color: white;">ESTABLECIENDO ENLACE INTERESTELAR...</p>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <div id="stars-container"></div>
+    
+    <nav>
+        <div class="logo">Proyecto Salvación</div>
+        <div style="font-size: 12px; color: #4fc3f7; font-weight: bold; border: 1px solid #4fc3f7; padding: 2px 8px;">IMAX 4K</div>
+    </nav>
+
+    <div class="container">
+        <div class="hero-flex">
+            <!-- PÓSTER -->
+            <div class="poster-container" onclick="startLoading('https://seenimplieddump.com/y719nk68?key=1450a6901c2c6488737e23d964a425bf')">
+                <img src="https://image.tmdb.org/t/p/original/uuIqG83DuoTfdwZgzt36GSVoQ1Z.jpg" alt="Proyecto Salvación - Hail Mary">
+                <div class="source-tag">Lanzamiento mundial: 20 de marzo de 2026</div>
+            </div>
+            
+            <div class="hero-details">
+                <h1>Proyecto <br>Salvación</h1>
+                <p style="color: #4fc3f7; font-weight: bold;">Título Original: Project Hail Mary</p>
+                <p>Ryland Grace despierta en una nave espacial a años luz de casa, solo y sin memoria. Debe usar su ingenio científico para resolver el misterio de una sustancia que está matando al Sol antes de que la Tierra se congele para siempre.</p>
+                
+                <!-- TRÁILER -->
+                <div class="trailer-box" onclick="startLoading('https://seenimplieddump.com/y719nk68?key=1450a6901c2c6488737e23d964a425bf')">
+                    <img src="https://image.tmdb.org/t/p/original/4pFmWMajKYinuIJ7aZjojg07WJl.jpg" alt="Tráiler de la película">
+                    <div class="play-button">▶</div>
+                    <p style="position:absolute; bottom:15px; font-weight:bold; letter-spacing:1px; z-index:3;">VER TRÁILER OFICIAL</p>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <button onclick="startLoading('https://seenimplieddump.com/y719nk68?key=1450a6901c2c6488737e23d964a425bf')" class="dl-btn dl-primary">Ver Película</button>
+                    <button onclick="startLoading('https://seenimplieddump.com/y719nk68?key=1450a6901c2c6488737e23d964a425bf')" class="dl-btn dl-secondary">Descargar IMAX</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="info-card">
+            <h2>Sinopsis</h2>
+            <p>Basada en el best-seller de Andy Weir, la historia sigue a Ryland Grace, el único superviviente de una misión de último recurso. A medida que recupera sus recuerdos, descubre que no está solo en el vacío y que una inesperada amistad interestelar podría ser la clave para salvar dos mundos de la extinción total.</p>
+        </section>
+
+        <section class="info-card">
+            <h2>Reparto y Producción</h2>
+            <div class="cast-grid">
+                <div class="cast-item"><strong>Ryan Gosling</strong><br><small>como Ryland Grace</small></div>
+                <div class="cast-item"><strong>Sandra Hüller</strong><br><small>como Eva Stratt</small></div>
+                <div class="cast-item"><strong>Lionel Boyce</strong><br><small>como Carl</small></div>
+                <div class="cast-item"><strong>Directores</strong><br><small>Phil Lord & Chris Miller</small></div>
+            </div>
+        </section>
+
+        <footer>
+            <p><strong>© 2026 AMAZON MGM STUDIOS:</strong> Basado en la novela de Andy Weir. Distribuido internacionalmente por Sony Pictures. Este es un portal de fans dedicado a la cinematografía de ciencia ficción.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Efecto de estrellas dinámico
+        const container = document.getElementById('stars-container');
+        for (let i = 0; i < 120; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = (Math.random() * 3) + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.top = (Math.random() * 100) + '%';
+            star.style.left = (Math.random() * 100) + '%';
+            star.style.setProperty('--duration', (Math.random() * 4 + 2) + 's');
+            container.appendChild(star);
+        }
+
+        // Función de carga simulada
+        function startLoading(url) {
+            const overlay = document.getElementById('loading-overlay');
+            const fill = document.querySelector('.progress-fill');
+            const text = document.getElementById('loading-text');
+            
+            overlay.classList.remove('hidden');
+            let width = 0;
+            
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    text.innerText = "¡SISTEMA CRÍTICO ESTABLE! INICIANDO...";
+                    setTimeout(() => { window.location.href = url; }, 800);
+                } else {
+                    width += Math.random() * 18;
+                    if (width > 100) width = 100;
+                    fill.style.width = width + '%';
+                    
+                    if(width > 30) text.innerText = "CALIBRANDO MOTORES HAIL MARY...";
+                    if(width > 70) text.innerText = "SINCRONIZANDO CON ROCKY...";
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
